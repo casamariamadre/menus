@@ -1,6 +1,7 @@
 /* Sube VERSION en cada cambio para que los móviles se actualicen. */
-var VERSION = 'mm-menus-v0.1.0';
-var ARCHIVOS = ['./', 'index.html', 'styles.css', 'config.js', 'alergenos.js', 'datos-demo.js', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png'];
+var VERSION = 'mm-menus-v0.2.0';
+var ARCHIVOS = ['./', 'index.html', 'styles.css', 'config.js', 'alergenos.js', 'datos-demo.js', 'app.js', 'manifest.webmanifest',
+  'icons/icon-192.png', 'icons/logo-casa-maria-madre.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ARCHIVOS); }).then(function () { return self.skipWaiting(); }));
 });

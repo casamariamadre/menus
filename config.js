@@ -3,11 +3,13 @@
  *
  * API_URL: dirección del puente de Apps Script (termina en /exec).
  *          Vacía = MODO DEMOSTRACIÓN: datos de ejemplo guardados solo en este dispositivo.
- *          (Borrador 1a: solo existe el modo demostración.)
+ * TELEFONO_AVISO: teléfono de gestión para avisar si un dato del evento está mal
+ *          (aparece el botón «Llamar a gestión»). Vacío = solo se muestra el texto.
  */
 window.CONFIG = {
   API_URL: '',
   NOMBRE_CASA: 'Casa María Madre',
   NOMBRE_APP: 'Menús',
-  VERSION: '0.1.0-borrador'
+  VERSION: '0.2.0',
+  TELEFONO_AVISO: ''
 };
