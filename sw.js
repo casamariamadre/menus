@@ -1,7 +1,9 @@
-/* Sube VERSION en cada cambio para que los móviles se actualicen. */
-var VERSION = 'mm-menus-v0.2.0';
-var ARCHIVOS = ['./', 'index.html', 'styles.css', 'config.js', 'alergenos.js', 'datos-demo.js', 'app.js', 'manifest.webmanifest',
-  'icons/icon-192.png', 'icons/logo-casa-maria-madre.png'];
+/* Guarda la app en el móvil para que abra rápido y sin conexión.
+   Al publicar cambios, sube el número de VERSION para que los móviles se actualicen. */
+var VERSION = 'mm-v1.4.0';
+var ARCHIVOS = ['./', 'index.html', 'styles.css', 'app.js', 'config.js', 'manifest.webmanifest',
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png'];
+
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ARCHIVOS); }).then(function () { return self.skipWaiting(); }));
 });
@@ -11,8 +13,12 @@ self.addEventListener('activate', function (e) {
   }).then(function () { return self.clients.claim(); }));
 });
 self.addEventListener('fetch', function (e) {
-  if (e.request.method !== 'GET') return;
+  var url = new URL(e.request.url);
+  if (e.request.method !== 'GET' || url.origin !== location.origin) return; // las llamadas a Google no se guardan
+  // Red primero (para recibir siempre la última versión); si no hay conexión, la copia guardada.
   e.respondWith(fetch(e.request).then(function (r) {
-    var copia = r.clone(); caches.open(VERSION).then(function (c) { c.put(e.request, copia); }); return r;
-  }).catch(function () { return caches.match(e.request); }));
+    var copia = r.clone();
+    caches.open(VERSION).then(function (c) { c.put(e.request, copia); });
+    return r;
+  }).catch(function () { return caches.match(e.request, { ignoreSearch: true }); }));
 });
