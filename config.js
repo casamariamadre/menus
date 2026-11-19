@@ -1,15 +1,15 @@
 /*
- * CONFIGURACIÓN DE LA APP – solo hay que tocar este archivo.
+ * CONFIGURACIÓN DE LA APP DE MENÚS – solo hay que tocar este archivo.
  *
- * API_URL: la dirección que da Apps Script al implementar (termina en /exec).
- *          Si se deja vacía, la app funciona en MODO DEMOSTRACIÓN
- *          (datos ficticios guardados solo en el propio móvil; clave: demo).
- * GESTORES: nombres que aparecen en "¿Quién eres?". Se pueden cambiar cuando queráis.
+ * API_URL: dirección del puente de Apps Script (termina en /exec).
+ *          Vacía = MODO DEMOSTRACIÓN: datos de ejemplo guardados solo en este dispositivo.
+ * TELEFONO_AVISO: teléfono de gestión para avisar si un dato del evento está mal
+ *          (aparece el botón «Llamar a gestión»). Vacío = solo se muestra el texto.
  */
 window.CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/AKfycbyw1k6M3CTxI93VFLE45b_I4Enb6INgo92kAvw5N3w8jNa4uCauKXrq0O9cmV3gQcO80w/exec',
+  API_URL: '',
   NOMBRE_CASA: 'Casa María Madre',
-  SUBTITULO: 'Guadalajara',
-  GESTORES: ['Viviane', 'Rafael', 'Gema', 'Carlos'],
-  CAPACIDAD_PREVISTA: 60
+  NOMBRE_APP: 'Menús',
+  VERSION: '0.2.0',
+  TELEFONO_AVISO: ''
 };
